@@ -1,3 +1,12 @@
+# WHY FORKED?
+
+This plugin is the same as https://github.com/antifuchs/ansible-sshlxd-connection
+without a couple of lines.
+The reason is the plugin don't work fine with "becomes" in container.
+In this fork I asume the ssh user have permissions to run lxd. This way,
+I can compose sudoable commands in the container.
+
+
 # ansible-sshlxd-connection
 
 An Ansible 2.0 connection plugin that allows you to access LXD
