@@ -56,18 +56,12 @@ class Connection(ConnectionBase):
         return cmd
 
     def host_command(self, cmd, do_become=False):
-        if self._play_context.become and do_become:
-            cmd = self._play_context.make_become_cmd(cmd)
         return super(Connection, self).exec_command(cmd, in_data=None, sudoable=True)
 
     def exec_command(self, cmd, in_data=None, executable='/bin/sh', sudoable=True):
         ''' run a command in the container '''
 
         cmd = '%s exec %s -- %s' % (self.get_container_connector(), self.get_container_id(), cmd)
-        if self._play_context.become:
-            # display.debug("_low_level_execute_command(): using become for this command")
-            cmd = self._play_context.make_become_cmd(cmd)
-
         # display.vvv("CONTAINER (%s) %s" % (local_cmd), host=self.host)
         return super(Connection, self).exec_command(cmd, in_data, True)
 
