@@ -2,6 +2,7 @@ from __future__ import (absolute_import, division, print_function)
 
 import os
 import os.path
+import sys
 import pipes
 
 from ansible.errors import AnsibleError
@@ -71,6 +72,8 @@ class Connection(ConnectionBase):
     @contextmanager
     def tempfile(self):
         code, stdout, stderr = self.host_command('mktemp')
+        if sys.version_info.major == 3:
+            stdout = stdout.decode('utf-8')
         if code != 0:
             raise AnsibleError("failed to make temp file:\n%s\n%s" % (stdout, stderr))
         tmp = stdout.strip().split('\n')[-1]
