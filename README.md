@@ -1,15 +1,15 @@
 # WHY FORKED?
 
-This plugin is the same as https://github.com/antifuchs/ansible-sshlxd-connection
-without a couple of lines.
-The reason is the plugin don't work fine with "becomes" in container.
-In this fork I asume the ssh user have permissions to run lxd. This way,
-I can compose sudoable commands in the container.
+This plugin is the same as https://github.com/antifuchs/ansible-sshlxd-connection,
+which is based on https://github.com/austinhyde/ansible-sshjail but without a couple of lines.
+The reason is the plugin don't work fine with "becomes" inside the container.
+In this fork I asume the ssh user on remote host have permissions to run lxd. This way,
+I can compose sudoable commands inside the container.
 
 
 # ansible-sshlxd-connection
 
-An Ansible 2.0 connection plugin that allows you to access LXD
+An Ansible 2.5 connection plugin that allows you to access LXD
 containers remotely through SSH.
 
 The `sshlxd` plugin uses SSH, `sudo` and `lxc exec` (along with `lxc
@@ -19,13 +19,13 @@ if you have a Mac and want to provision a Linux server with containers
 on it (otherwise you could just use any old LXD connection plugin and
 use remote containers, I guess).
 
-It's tested with Ansible 2.0.1 and the Ubuntu Xenial (16.04) beta.
+It's tested with Ansible 2.5 and the Ubuntu Xenial (16.04) beta.
 
 ## Requirements
 
 Machine running ansible:
 
-* Ansible 2.0 and its dependencies
+* Ansible >= 2.0 and its dependencies
 
 Host:
 
